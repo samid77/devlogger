@@ -12,6 +12,9 @@ export class LogService {
   private logSource = new BehaviorSubject<Log>({id: null, text: null, date: null});
   public selectedLog = this.logSource.asObservable();
 
+  private stateSource = new BehaviorSubject<Boolean>(true);
+  public stateClear = this.stateSource.asObservable();
+
   constructor() {
     this.logs = [
       {id: '1', text: 'Generated components', date: new Date('01/20/2019 14:21:53')},
@@ -48,5 +51,9 @@ export class LogService {
         this.logs.splice(index, 1);
       }
     });
+  }
+
+  clearState() {
+    this.stateSource.next(true);
   }
 }
