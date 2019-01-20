@@ -20,8 +20,14 @@ export class LogsComponent implements OnInit {
   }
 
   onSelect(log: Log) {
-    console.log(log);
+    // console.log(log);
     this.logService.setFormLog(log);
+  }
+
+  onDelete(log: Log) {
+    if (confirm(`Delete this log?`)) {
+      this.logService.deleteLog(log);
+    }
   }
 
 }
